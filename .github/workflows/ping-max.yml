@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Ping MAX long-poll
         run: |
-          curl -fsS "https://podryad-pro-kohl.vercel.app/api/cron/max-poll" \
+          curl -fsS "https://podryadpro.ru/api/cron/max-poll" \
             -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
             -w "\nHTTP %{http_code}\n" \
             --max-time 120
