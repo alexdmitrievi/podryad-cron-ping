@@ -1,0 +1,16 @@
+name: ping-auctions
+on:
+  schedule:
+    - cron: "15 */4 * * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Ping auction alerts
+        run: |
+          curl -fsS "https://podryad-pro-kohl.vercel.app/api/cron/auction-alerts?hours=24" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -w "\nHTTP %{http_code}\n" \
+            --max-time 120
