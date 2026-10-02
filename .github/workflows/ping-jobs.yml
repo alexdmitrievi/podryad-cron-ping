@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Ping job queue worker
         run: |
-          curl -fsS -X POST "https://podryad-pro-kohl.vercel.app/api/cron/jobs?limit=5" \
+          curl -fsS -X POST "https://podryadpro.ru/api/cron/jobs?limit=5" \
             -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
             -w "\nHTTP %{http_code}\n" \
             --max-time 120
