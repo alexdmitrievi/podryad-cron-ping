@@ -1,0 +1,16 @@
+name: ping-outreach
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Ping outreach review
+        run: |
+          curl -fsS -X POST "https://podryad-pro-kohl.vercel.app/api/cron/outreach-review?limit=5" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -w "\nHTTP %{http_code}\n" \
+            --max-time 120
